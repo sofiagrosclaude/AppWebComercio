@@ -71,6 +71,7 @@
     <Content Include="Web.config" />
     <Content Include="ArticulosLista.aspx" />
     <Content Include="DetalleArticulo.aspx" />
+    <Content Include="FormularioArticulos.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Default.aspx.cs">
@@ -101,6 +102,13 @@
     </Compile>
     <Compile Include="DetalleArticulo.aspx.designer.cs">
       <DependentUpon>DetalleArticulo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioArticulos.aspx.cs">
+      <DependentUpon>FormularioArticulos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormularioArticulos.aspx.designer.cs">
+      <DependentUpon>FormularioArticulos.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

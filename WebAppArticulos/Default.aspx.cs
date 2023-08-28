@@ -16,7 +16,19 @@ namespace WebAppArticulos
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             ListaArticulo = negocio.listarConSP();
+
+            if (!IsPostBack)
+            {
+
+                repRepetidor.DataSource = ListaArticulo;
+                repRepetidor.DataBind();
+            }
  
+        }
+
+        protected void btnEjemplo_Click(object sender, EventArgs e)
+        {
+            string valor = ((Button)sender).CommandArgument;
         }
     }
 }

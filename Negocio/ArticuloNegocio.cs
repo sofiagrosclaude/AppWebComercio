@@ -12,7 +12,7 @@ namespace Negocio
 {
     public class ArticuloNegocio
     {
-        public List<Articulo> listar()
+        public List<Articulo> listar(string id = "")
         {
             List<Articulo> lista = new List<Articulo>();
             SqlConnection conexion = new SqlConnection();
@@ -22,9 +22,16 @@ namespace Negocio
 
             try
             {
-                conexion.ConnectionString = "server=DESKTOP-VNUL8N7\\SQLEXPRESS; database=CATALOGO_DB; integrated security=true";
+                conexion.ConnectionString = "server=DESKTOP-VNUL8N7\\SQLEXPRESS; database=CATALOGO_WEB_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Select A.Id, Codigo, Nombre, A.Descripcion, ImagenUrl, C.Descripcion as Categoria, Precio, M.Descripcion as Marca, A.IdCategoria, A.IdMarca From ARTICULOS A, CATEGORIAS C, MARCAS M where C.Id = A.IdCategoria AND M.Id = A.IdMarca";
+                comando.CommandText = "Select A.Id, Codigo, Nombre, A.Descripcion, ImagenUrl, C.Descripcion as Categoria, Precio, M.Descripcion as Marca, A.IdCategoria, A.IdMarca From ARTICULOS A, CATEGORIAS C, MARCAS M where C.Id = A.IdCategoria AND M.Id = A.IdMarca ";
+               if (id != "")
+                {
+                    comando.CommandText += " and A.Id = " + id;  
+                
+               }
+
+
                 comando.Connection = conexion;
                 conexion.Open();
                 lector = comando.ExecuteReader();
@@ -68,6 +75,7 @@ namespace Negocio
         public List<Articulo> listarConSP()
         {
             List<Articulo> lista = new List<Articulo>();
+           
             AccesoDatos datos = new AccesoDatos();
             try
             {
@@ -112,6 +120,8 @@ namespace Negocio
             }
         }
 
+        
+
         public void agregar(Articulo nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -134,6 +144,33 @@ namespace Negocio
             }
         }
 
+        public void agregarConSP(Articulo nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+
+                datos.setearProcedimiento("storedAltaArticulo");
+                datos.setearParametro("@codigo", nuevo.Codigo);
+                datos.setearParametro("@nombre", nuevo.Nombre);
+                datos.setearParametro("@descripcion", nuevo.Descripcion); 
+                datos.setearParametro("@idMarca", nuevo.Marca.Id);
+                datos.setearParametro("@idCategoria", nuevo.Categoria.Id);
+                datos.setearParametro("@imagenUrl", nuevo.ImagenUrl);
+                datos.setearParametro("@precio", nuevo.Precio);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public void modificar(Articulo art)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -160,7 +197,33 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public void modificarConSP(Articulo art)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("storedModificarArticulo");
+                datos.setearParametro("@codigo", art.Codigo);
+                datos.setearParametro("@nombre", art.Nombre);
+                datos.setearParametro("@descripcion", art.Descripcion);
+                datos.setearParametro("@idCategoria", art.Categoria.Id);
+                datos.setearParametro("@idMarca", art.Marca.Id);
+                datos.setearParametro("@precio", art.Precio);
+                datos.setearParametro("@imagenUrl", art.ImagenUrl);
+                datos.setearParametro("@id", art.Id);
 
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+            
+        }
         public void eliminar(int id)
         {
             try
@@ -176,7 +239,21 @@ namespace Negocio
                 throw ex;
             }
         }
-
+        public void eliminarLogico(int id, bool activo = false)
+        {       //No lo puedo realizar por el diseño de la base de datos
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("update ARTICULOS set Activo = @activo Where id = @id");
+                datos.setearParametro("@id", id);
+                datos.setearParametro("@activo", activo);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public List<Articulo> filtrar(string cualidad, string criterio, string filtro)
         {
             List<Articulo> lista = new List<Articulo>();
@@ -188,10 +265,10 @@ namespace Negocio
                 {
                     switch(criterio)
                     {
-                        case "Desde":
+                        case "Desde:":
                             consulta += "Precio >= " + filtro;
                             break;
-                        case "Hasta":
+                        case "Hasta:":
                             consulta += "Precio <= " + filtro;
                             break;
                     }
@@ -200,10 +277,10 @@ namespace Negocio
                 {
                     switch (criterio)
                     {
-                        case "Empieza con":
+                        case "Comienza con:":
                             consulta += "M.Descripcion like '" + filtro + "%' ";
                             break;
-                        case "Contiene":
+                        case "Contiene:":
                             consulta += "M.Descripcion like '%" + filtro + "%'";
                             break;
                     }
@@ -212,10 +289,10 @@ namespace Negocio
                 {
                     switch (criterio)
                     {
-                        case "Empieza con":
+                        case "Comienza: con":
                             consulta += "C.Descripcion like '" + filtro + "%' ";
                             break;
-                        case "Contiene":
+                        case "Contiene:":
                             consulta += "C.Descripcion like '%" + filtro + "%'";
                             break;
                     }
@@ -257,7 +334,12 @@ namespace Negocio
                 throw ex;
             }
         }
+
+      
     }
 
-    
+
 }
+
+    
+
