@@ -248,6 +248,8 @@ namespace Negocio
                 datos.setearParametro("@id", id);
                 datos.setearParametro("@activo", activo);
                 datos.ejecutarAccion();
+
+                
             }
             catch (Exception ex)
             {

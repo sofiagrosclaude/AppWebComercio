@@ -29,6 +29,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link active" href="ArticulosLista.aspx">Artículos</a>
                                 </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link active" href="Login.aspx">Login</a>
+                                </li>
                             </ul>
                     </div>
                 </div>

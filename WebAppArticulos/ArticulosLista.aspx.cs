@@ -24,6 +24,14 @@ namespace WebAppArticulos
                 dgvArticulos.DataBind();
 
             }
+            else
+            {
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                Session.Add("listaArticulos", negocio.listarConSP());
+                dgvArticulos.DataSource = Session["listaArticulos"];
+                dgvArticulos.DataBind();
+
+            }
 
         }
         protected void dgvArticulos_PageIndexChanging(object sender, GridViewPageEventArgs e)
