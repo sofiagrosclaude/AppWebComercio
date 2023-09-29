@@ -18,28 +18,28 @@ namespace WebAppArticulos
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            Usuario usuario;
+            Usuario users;
             UsuarioNegocio negocio = new UsuarioNegocio();
             try
             {
-                usuario = new Usuario(txtEmail.Text, txtPassword.Text, false);
-                if (negocio.Loguear(usuario))
+                users = new Usuario(txtEmail.Text, txtPassword.Text, false);
+                if (negocio.Loguear(users))
                 {
-                    Session.Add("usuario", usuario);
-                    Response.Redirect("Default.aspx", false);
+                    Session.Add("usuario", users);
+                    Response.Redirect("LoginExitoso.aspx", false);
 
                 }
                 else
                 {
                     Session.Add("error", "User o Password incorrecta");
-                    Response.Redirect("Error.aspx", false);
+                    Response.Redirect("Error.aspx",false);
                 }
 
             }
             catch (Exception ex)
             {
                 Session.Add("error", ex.ToString());
-                Response.Redirect("Error.aspx");
+                Response.Redirect("Error.aspx", false);
 
             }
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Security.Policy;
 using Dominio;
-
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace Negocio
 {
@@ -45,6 +45,7 @@ namespace Negocio
 
         public void ejecutarLector()
         {
+            comando.Connection = conexion;
             try
             {
                 conexion.Open();
@@ -76,6 +77,19 @@ namespace Negocio
                 throw ex;
             }
 
+        }
+        public int ejecutarAccionScalar()
+        {
+            comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+                return int.Parse(comando.ExecuteScalar().ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public void ejecutarAccion()
         {

@@ -5,6 +5,8 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-md-6">
+        <h2>Logueate</h2>
+        
         <div class="mb-3">
             <label clas="form-label">Email:</label>
             <asp:TextBox runat="server" REQUIRED ID="txtEmail" CssClass="form-control"/>

@@ -53,7 +53,7 @@
                                     <asp:button text="Aceptar" ID="btnAceptar" CssClass="btn btn-primary"  runat="server" OnClick="btnAceptar_Click" />
                                     <asp:button text="Eliminar" ID="btnEliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click"  runat="server" />
                                      <asp:Button Text="Inactivar" ID="btnInactivar" OnClick="btnInactivar_Click" CssClass="btn btn-warning" runat="server" />
-                                     <a href="Default.aspx" class="btn btn-success">Cancelar</a>
+                                     <a href="ArticulosLista.aspx" class="btn btn-success">Cancelar</a>
                                      </div>
                                    <%if (ConfirmaEliminacion)
                         

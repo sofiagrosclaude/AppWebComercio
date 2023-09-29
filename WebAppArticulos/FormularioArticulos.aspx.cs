@@ -38,6 +38,10 @@ namespace WebAppArticulos
                     ddlMarca.DataTextField = "Descripcion";
                     ddlMarca.DataBind();
 
+                    btnEliminar.Enabled = false;
+                    btnInactivar.Enabled = false;
+                    
+
                 }
 
                 //configuracion si estamos modificando
@@ -64,6 +68,8 @@ namespace WebAppArticulos
                     ddlMarca.SelectedValue = seleccionado.Marca.Id.ToString();
                     txtImagenUrl_TextChanged(sender, e);
 
+                    btnEliminar.Enabled = true;
+                    btnInactivar.Enabled = true;    
                 }
 
             }
@@ -95,7 +101,7 @@ namespace WebAppArticulos
 
                 if (Request.QueryString["id"] != null)
                 {
-                    nuevo.Id = int.Parse(txtId.Text);
+                   nuevo.Id = int.Parse(txtId.Text);
                    negocio.modificarConSP(nuevo);
                 }
                 else

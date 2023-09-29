@@ -70,6 +70,9 @@
     <Content Include="Default.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="LoginExitoso.aspx" />
+    <Content Include="Registro.aspx" />
+    <Content Include="RegistroExitoso.aspx" />
     <Content Include="Web.config" />
     <Content Include="ArticulosLista.aspx" />
     <Content Include="DetalleArticulo.aspx" />
@@ -96,6 +99,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginExitoso.aspx.cs">
+      <DependentUpon>LoginExitoso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginExitoso.aspx.designer.cs">
+      <DependentUpon>LoginExitoso.aspx</DependentUpon>
     </Compile>
     <Compile Include="Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
@@ -125,6 +135,20 @@
     </Compile>
     <Compile Include="FormularioArticulos.aspx.designer.cs">
       <DependentUpon>FormularioArticulos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Registro.aspx.cs">
+      <DependentUpon>Registro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registro.aspx.designer.cs">
+      <DependentUpon>Registro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroExitoso.aspx.cs">
+      <DependentUpon>RegistroExitoso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroExitoso.aspx.designer.cs">
+      <DependentUpon>RegistroExitoso.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
