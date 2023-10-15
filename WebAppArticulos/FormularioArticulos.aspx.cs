@@ -76,7 +76,8 @@ namespace WebAppArticulos
             catch (Exception ex)
             {
 
-                Session.Add("Error", ex);
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
                 //throw ex;
             }
         }
@@ -112,8 +113,8 @@ namespace WebAppArticulos
             catch (Exception ex)
             {
 
-                Session.Add("Error", ex);
-                throw;
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
             }
         }
 
@@ -141,8 +142,8 @@ namespace WebAppArticulos
             }
             catch (Exception ex)
             {
-                Session.Add("Error", ex);
-                
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
             }
         }
       
@@ -155,10 +156,13 @@ namespace WebAppArticulos
                 ArticuloNegocio negocio = new ArticuloNegocio();
                 negocio.eliminarLogico(int.Parse(txtId.Text));
                 Response.Redirect("ArticulosLista.aspx");
+
+
             }
             catch (Exception ex)
             {
-                Session.Add("Error", ex);
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
             }
 
             //visible (?) = false?

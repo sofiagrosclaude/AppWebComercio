@@ -15,6 +15,15 @@ namespace WebAppArticulos
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+            if (!Seguridad.esAdmin(Session["usuario"]))
+            {
+                Session.Add("error", "Se requieren permisos de Admin para acceder a esta pantalla");
+                Response.Redirect("Error.aspx");
+                
+                
+            }
+
             FiltroAvanzado = chkAvanzado.Checked;
             if (!IsPostBack)
             {
@@ -95,8 +104,9 @@ namespace WebAppArticulos
                 catch (Exception ex)
                 {
 
-                    Session.Add("Error", ex);
-                }
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
+            }
         
 
         }

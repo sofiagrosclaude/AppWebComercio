@@ -77,8 +77,8 @@ namespace WebAppArticulos
             catch (Exception ex)
             {
 
-                Session.Add("Error", ex);
-                //throw ex;
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
             }
         }
 

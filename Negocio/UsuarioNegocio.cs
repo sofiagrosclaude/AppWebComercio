@@ -18,19 +18,25 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearQuery("Select Id, email, pass, admin from USERS where email = @email AND pass = @pass");
-                datos.agregarParametro("@email", users.Email);
-                datos.agregarParametro("@pass", users.Pass);
+                datos.setearConsulta("Select Id, email, pass, admin, nombre, apellido, urlImagenPerfil from USERS where email = @email AND pass = @pass");
+                datos.setearParametro("@email", users.Email);
+                datos.setearParametro("@pass", users.Pass);
+               
+                datos.ejecutarLectura();
 
+            
 
-
-
-                datos.ejecutarLector();
-                while (datos.Lector.Read())
+                if (datos.Lector.Read())
                 {
                     users.Id = (int)datos.Lector["Id"];
                     //users.TipoUsuario = (bool)(datos.Lector["admin"]) == 1 ? TipoAdmin.ADMIN : TipoAdmin.USER;
-                    users.TipoUsuario = (bool)(datos.Lector["admin"]);
+                    users.Admin = (bool)(datos.Lector["admin"]);
+                    if (!(datos.Lector["urlImagenPerfil"] is DBNull))
+                        users.urlImagenPerfil = (string)datos.Lector["urlImagenPerfil"];
+                    if (!(datos.Lector["nombre"] is DBNull))
+                        users.Nombre = (string)datos.Lector["nombre"];
+                    if (!(datos.Lector["apellido"] is DBNull))
+                        users.Apellido = (string)datos.Lector["apellido"];
                     return true;
                 }
                 return false;
@@ -70,5 +76,29 @@ namespace Negocio
             }
         }
 
+        public void actualizar(Usuario usuario)
+        {
+                AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update USERS set urlImagenPerfil = @imagen, Nombre = @nombre, Apellido = @apellido where Id = @id");
+                //datos.setearParametro("@imagen", usuario.urlImagenPerfil != null ? usuario.urlImagenPerfil : "");
+                datos.setearParametro("@imagen", (object)usuario.urlImagenPerfil ?? DBNull.Value);
+                datos.setearParametro("@nombre", usuario.Nombre);
+                datos.setearParametro("@apellido", usuario.Apellido);
+                datos.setearParametro("@id", usuario.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+            
+        }
     }
 }

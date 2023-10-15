@@ -22,13 +22,13 @@ namespace Dominio
         public string Apellido { get; set; }
         public string urlImagenPerfil { get; set; }
         //public TipoAdmin TipoUsuario { get; set; }
-         public bool TipoUsuario { get; set; }
+         public bool Admin { get; set; }
 
         public Usuario(string email, string pass, bool admin)
         {
             Email = email;
             Pass = pass;
-            TipoUsuario = admin;
+            Admin = admin;
 
         }
         //public Usuario(string email, string pass, bool admin)

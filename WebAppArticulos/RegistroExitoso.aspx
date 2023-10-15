@@ -3,8 +3,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>Bienvenidx! Te registraste con éxito ✔️</h2>
-    <p>Ya podes comenzar a navegar!</p>
+    <p>Ya podes completar tu perfil!</p>
     
     
-    <a href="/Default.aspx" class="btn btn-primary" >Ir al home</a>
+    <a href="/MiPerfil.aspx" class="btn btn-primary" >Ir a Mi Perfil</a>
 </asp:Content>

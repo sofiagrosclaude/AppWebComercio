@@ -13,9 +13,10 @@
         </div>
         <div class="mb-3">
             <label clas="form-label">Password:</label>
-            <asp:TextBox runat="server" id="txtPassword" placeholder="******" CssClass="form-control" TextMode="Password" />
+            <asp:TextBox runat="server" ID="txtPassword" placeholder="******" CssClass="form-control" TextMode="Password" />
         </div>
         <asp:Button Text="Ingresar" ID="btnIngresar" OnClick="btnIngresar_Click" cssClass="btn btn-primary" runat="server" />
+        
     </div>
 
 </asp:Content>

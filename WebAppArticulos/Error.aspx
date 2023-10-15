@@ -5,5 +5,9 @@
     <h1>Hubo un problema ❌ </h1>
     <asp:Label Text="text" ID="lblMensaje" runat="server" />
 
-    <a href="/Login.aspx" class="btn btn-primary">Reintentar</a>
+        <%if (!Negocio.Seguridad.sesionActiva(Session["usuario"])){ %>
+                                       
+            <asp:Button Text="Reintentar" ID="btnReintentar" OnClick="btnReintentar_Click" CssClass="btn btn-primary" runat="server" />
+        <%} %> 
+  
 </asp:Content>

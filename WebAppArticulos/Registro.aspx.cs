@@ -23,15 +23,15 @@ namespace WebAppArticulos
             {
                 Usuario users = new Usuario();
                 UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
-                EmailService emailService = new EmailService();
+                //EmailService emailService = new EmailService();
 
                 users.Email = txtEmail.Text;
                 users.Pass = txtPassword.Text;
-                int id = usuarioNegocio.insertarNuevo(users);
+                users.Id = usuarioNegocio.insertarNuevo(users);
+                Session.Add("usuario", users);
+                //emailService.armarCorreo(users.Email, "Bienvenidx Usuarix", "Hola, te damos la bienvenido a la App");
+                //emailService.enviarEmail();
 
-                emailService.armarCorreo(users.Email, "Bienvenidx Usuarix", "Hola, te damos la bienvenido a la App");
-                emailService.enviarEmail();
-                
                 Response.Redirect("RegistroExitoso.aspx", false);
                 
             }
@@ -39,6 +39,7 @@ namespace WebAppArticulos
             {
 
                 Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx");
             }
         }
     }

@@ -27,16 +27,34 @@
                                     <a class="nav-link active" href="/">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="ArticulosLista.aspx">Artículos</a>
+                                    <a class="nav-link active" href="ArticulosLista.aspx">Lista de Artículos</a>
                                 </li>
-                            </ul>
                                 <li class="nav-item">
-                                        <a class="btn btn-success" href="Login.aspx">Login</a>
-                                        <a class="btn btn-outline-primary" href="Registro.aspx">Registrarse</a>
+                                    <a class="nav-link active" href="Favoritos.aspx">Favoritos</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="MiPerfil.aspx">Mi perfil</a>
+                                </li>
+                           </ul>
                     </div>
-                </div>
-            </nav>
+                     </div>
+                    <div class="d-flex">
+                        <%if (!Negocio.Seguridad.sesionActiva(Session["usuario"])){ %>
+                          
+                                    <a class="btn btn-success" href="Login.aspx">Login</a>
+                                    <a class="btn btn-outline-primary" href="Registro.aspx">Registrarse</a>
+                        <%
+                              }
+                            else{
+                            %>
+                                     <asp:Image ID="imgAvatar" style="height:40px; width:40px; border-radius:50%;" runat="server" CssClass="m-auto me-2"/>
+                                     <asp:Label Text="Usuario" runat="server" ID="lblUsuario" CssClass="text-light m-auto me-2"/>
+                                     <asp:Button Text="Salir" ID="btnSalir" runat="server" OnClick="btnSalir_Click" CssClass="m-auto me-2; btn btn-danger" />
+                              
+                            <%  } %>    
+                        
+                    </div>
+              </nav>
             <div class="container">
                 <hr />
                 <div>
