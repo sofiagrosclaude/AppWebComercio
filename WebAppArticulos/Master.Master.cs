@@ -27,6 +27,7 @@ namespace WebAppArticulos
                     lblUsuario.Text = usuario.Email;
                     if (!string.IsNullOrEmpty(usuario.urlImagenPerfil))
                         imgAvatar.ImageUrl = "~/Imagenes/" + usuario.urlImagenPerfil;
+                    
 
                 }
             }

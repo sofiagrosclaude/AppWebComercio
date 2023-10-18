@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocio;
 using Dominio;
+using System.Diagnostics.Eventing.Reader;
 
 namespace WebAppArticulos
 {
@@ -68,6 +69,7 @@ namespace WebAppArticulos
             FiltroAvanzado = chkAvanzado.Checked;
             txtFiltro.Enabled = !FiltroAvanzado;
 
+
         }
 
         protected void ddlCampo_SelectedIndexChanged(object sender, EventArgs e)
@@ -87,18 +89,20 @@ namespace WebAppArticulos
                 ddlCriterio.Items.Add("Comienza con:");
 
             }
+          
+
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
                 try
                 {
-                    ArticuloNegocio negocio = new ArticuloNegocio();
-                    dgvArticulos.DataSource = negocio.filtrar(
-                    ddlCampo.SelectedItem.ToString(),
-                    ddlCriterio.SelectedItem.ToString(), txtFiltroAvanzado.Text);
-                    dgvArticulos.DataBind();
-
+                        ArticuloNegocio negocio = new ArticuloNegocio();
+                        
+                        dgvArticulos.DataSource = negocio.filtrar(
+                        ddlCampo.SelectedItem.ToString(),
+                        ddlCriterio.SelectedItem.ToString(), txtFiltroAvanzado.Text);
+                        dgvArticulos.DataBind();
 
                 }
                 catch (Exception ex)
@@ -106,10 +110,11 @@ namespace WebAppArticulos
 
                 Session.Add("Error", ex.ToString());
                 Response.Redirect("Error.aspx");
-            }
+                }
         
 
         }
+
        
     } 
 }    

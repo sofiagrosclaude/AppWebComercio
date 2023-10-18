@@ -275,7 +275,7 @@ namespace Negocio
                             break;
                     }
                 }
-                else if(cualidad == "Marca")
+                else if (cualidad == "Marca")
                 {
                     switch (criterio)
                     {
@@ -286,12 +286,14 @@ namespace Negocio
                             consulta += "M.Descripcion like '%" + filtro + "%'";
                             break;
                     }
+
+
                 }
                 else
                 {
                     switch (criterio)
                     {
-                        case "Comienza: con":
+                        case "Comienza con:":
                             consulta += "C.Descripcion like '" + filtro + "%' ";
                             break;
                         case "Contiene:":

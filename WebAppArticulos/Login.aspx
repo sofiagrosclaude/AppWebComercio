@@ -10,6 +10,7 @@
         <div class="mb-3">
             <label clas="form-label">Email:</label>
             <asp:TextBox runat="server" REQUIRED ID="txtEmail" CssClass="form-control"/>
+            
         </div>
         <div class="mb-3">
             <label clas="form-label">Password:</label>

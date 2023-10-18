@@ -25,12 +25,12 @@ namespace WebAppArticulos
             {
                 //users = new Usuario(txtEmail.Text, txtPassword.Text, false);
 
-                if (Validacion.validaTextoVacio(txtEmail) || Validacion.validaTextoVacio(txtPassword))
-                {
+                //if (Validacion.validaTextoVacio(txtEmail) || Validacion.validaTextoVacio(txtPassword))
+                //{
 
-                    Session.Add("error", "Por favor completa ambos campos");
-                    Response.Redirect("Error.aspx");
-                }
+                //    Session.Add("error", "Por favor completa ambos campos");
+                //    Response.Redirect("Error.aspx");
+                //}
 
                 users.Email = txtEmail.Text;
                 users.Pass = txtPassword.Text;
@@ -49,7 +49,7 @@ namespace WebAppArticulos
                 }
 
             }
-            catch(System.Threading.ThreadAbortException ex) { }
+            //catch(System.Threading.ThreadAbortException ex) { }
             catch (Exception ex)
             {
                 Session.Add("error", ex.ToString());

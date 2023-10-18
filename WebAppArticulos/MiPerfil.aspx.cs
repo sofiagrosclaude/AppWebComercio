@@ -46,6 +46,10 @@ namespace WebAppArticulos
         {
             try
             {
+
+                Page.Validate();
+                if (!Page.IsValid)
+                    return;
                 //Escribir img
                 UsuarioNegocio negocio = new UsuarioNegocio();
                 
@@ -61,14 +65,18 @@ namespace WebAppArticulos
                
                 usuario.Nombre = txtNombre.Text;
                 usuario.Apellido = txtApellido.Text;
-
-                //guardar datos
-                negocio.actualizar(usuario);
+                
 
                 //leer img
                 
                 Image img = (Image)Master.FindControl("imgAvatar");
                 img.ImageUrl = "~/Imagenes/" + usuario.urlImagenPerfil;
+
+                //guardar datos
+                negocio.actualizar(usuario);
+               
+               
+
             }
             catch (Exception ex)
             {

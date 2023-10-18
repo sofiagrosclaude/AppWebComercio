@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-3">
                     <div class="mb-3">
-                        <asp:TextBox runat="server" ID="txtFiltroAvanzado" CssClass="form-control"/>  
+                        <asp:TextBox runat="server" ID="txtFiltroAvanzado" CssClass="form-control" />  
                     </div>
                 </div>
                  <div class="col-3">
@@ -51,7 +51,6 @@
            </div>
         <%} %>
         
-       
     <asp:GridView ID="dgvArticulos" DataKeyNames="Id" runat="server" CssClass="table" AutoGenerateColumns="false" 
         OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged" OnPageIndexChanging="dgvArticulos_PageIndexChanging" AllowPaging="true" PageSize="5" >
         <Columns>
@@ -62,6 +61,7 @@
             <asp:CommandField HeaderText="Modificar" ShowSelectButton="true" SelectText="✍" />
          </Columns>
     </asp:GridView>
+       
      <a href="FormularioArticulos.aspx" class="btn btn-primary">Agregar Artículo</a>
     
 </asp:Content>

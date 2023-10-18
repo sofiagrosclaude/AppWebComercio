@@ -21,6 +21,9 @@ namespace WebAppArticulos
         {
             try
             {
+                Page.Validate();
+                if (!Page.IsValid)
+                    return;
                 Usuario users = new Usuario();
                 UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
                 //EmailService emailService = new EmailService();
